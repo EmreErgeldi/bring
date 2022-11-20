@@ -1,4 +1,4 @@
-//import Image from "next/image";
+import Image from "next/image";
 import { useRef, useState } from "react";
 
 import PersonIcon from "@mui/icons-material/Person";
@@ -66,14 +66,14 @@ export default function Navbar() {
             ref={bringElement}
           >
             {bring ? (
-              <img
+              <Image
                 src="/images/bring-hover.svg"
                 alt="Bring logo"
                 width={38}
                 height={16}
               />
             ) : (
-              <img
+              <Image
                 src="/images/bring.svg"
                 alt="Bring logo"
                 width={38}
@@ -87,14 +87,14 @@ export default function Navbar() {
             ref={bringfoodElement}
           >
             {bringfood ? (
-              <img
+              <Image
                 src="/images/bringfood-hover.svg"
                 alt="Bringfood logo"
                 width={70}
                 height={16}
               />
             ) : (
-              <img
+              <Image
                 src="/images/bringfood.svg"
                 alt="Bringfood logo"
                 width={70}
@@ -108,14 +108,14 @@ export default function Navbar() {
             ref={bringmoreElement}
           >
             {bringmore ? (
-              <img
+              <Image
                 src="/images/bringmore-hover.svg"
                 alt="Bring-it logo"
                 width={75}
                 height={16}
               />
             ) : (
-              <img
+              <Image
                 src="/images/bringmore.svg"
                 alt="Bringfood logo"
                 width={75}
@@ -129,14 +129,14 @@ export default function Navbar() {
             ref={bringwaterElement}
           >
             {bringwater ? (
-              <img
+              <Image
                 src="/images/bringwater-hover.svg"
                 alt="Bring-it logo"
                 width={75}
                 height={16}
               />
             ) : (
-              <img
+              <Image
                 src="/images/bringwater.svg"
                 alt="Bringfood logo"
                 width={75}

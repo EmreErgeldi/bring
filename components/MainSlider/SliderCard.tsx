@@ -1,4 +1,4 @@
-//import Image from "next/image";
+import Image from "next/image";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import TextField from "@mui/material/TextField";
 
@@ -10,7 +10,7 @@ export default function SliderCard() {
       </h1>
       <div className="flex">
         <div className="border-2 rounded-sm max-w-[109px] min-h-[56px] flex p-3 justify-center items-center m-1">
-          <img
+          <Image
             src="/images/Turkey (TR).svg"
             alt="Turkey flag"
             width={16}
