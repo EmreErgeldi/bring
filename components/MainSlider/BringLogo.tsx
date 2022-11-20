@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function BringLogo() {
   return (
     <div className="my-auto z-50">
-      <Image
+      <img
         src="/images/bring-bimutluluk.svg"
         alt="Bring Bi Mutluluk"
         width={180}

@@ -66,14 +66,14 @@ export default function Navbar() {
             ref={bringElement}
           >
             {bring ? (
-              <Image
+              <img
                 src="/images/bring-hover.svg"
                 alt="Bring logo"
                 width={38}
                 height={16}
               />
             ) : (
-              <Image
+              <img
                 src="/images/bring.svg"
                 alt="Bring logo"
                 width={38}
@@ -87,14 +87,14 @@ export default function Navbar() {
             ref={bringfoodElement}
           >
             {bringfood ? (
-              <Image
+              <img
                 src="/images/bringfood-hover.svg"
                 alt="Bringfood logo"
                 width={70}
                 height={16}
               />
             ) : (
-              <Image
+              <img
                 src="/images/bringfood.svg"
                 alt="Bringfood logo"
                 width={70}
@@ -108,14 +108,14 @@ export default function Navbar() {
             ref={bringmoreElement}
           >
             {bringmore ? (
-              <Image
+              <img
                 src="/images/bringmore-hover.svg"
                 alt="Bring-it logo"
                 width={75}
                 height={16}
               />
             ) : (
-              <Image
+              <img
                 src="/images/bringmore.svg"
                 alt="Bringfood logo"
                 width={75}
@@ -129,14 +129,14 @@ export default function Navbar() {
             ref={bringwaterElement}
           >
             {bringwater ? (
-              <Image
+              <img
                 src="/images/bringwater-hover.svg"
                 alt="Bring-it logo"
                 width={75}
                 height={16}
               />
             ) : (
-              <Image
+              <img
                 src="/images/bringwater.svg"
                 alt="Bringfood logo"
                 width={75}
