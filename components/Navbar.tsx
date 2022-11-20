@@ -71,6 +71,8 @@ export default function Navbar() {
                 alt="Bring logo"
                 width={38}
                 height={16}
+                blurDataURL="data:..."
+                placeholder="blur"
               />
             ) : (
               <Image
@@ -78,6 +80,8 @@ export default function Navbar() {
                 alt="Bring logo"
                 width={38}
                 height={16}
+                blurDataURL="data:..."
+                placeholder="blur"
               />
             )}
           </li>
@@ -92,6 +96,8 @@ export default function Navbar() {
                 alt="Bringfood logo"
                 width={70}
                 height={16}
+                blurDataURL="data:..."
+                placeholder="blur"
               />
             ) : (
               <Image
@@ -99,6 +105,8 @@ export default function Navbar() {
                 alt="Bringfood logo"
                 width={70}
                 height={16}
+                blurDataURL="data:..."
+                placeholder="blur"
               />
             )}
           </li>
@@ -113,6 +121,8 @@ export default function Navbar() {
                 alt="Bring-it logo"
                 width={75}
                 height={16}
+                blurDataURL="data:..."
+                placeholder="blur"
               />
             ) : (
               <Image
@@ -120,6 +130,8 @@ export default function Navbar() {
                 alt="Bringfood logo"
                 width={75}
                 height={16}
+                blurDataURL="data:..."
+                placeholder="blur"
               />
             )}
           </li>
@@ -134,6 +146,8 @@ export default function Navbar() {
                 alt="Bring-it logo"
                 width={75}
                 height={16}
+                blurDataURL="data:..."
+                placeholder="blur"
               />
             ) : (
               <Image
@@ -141,6 +155,8 @@ export default function Navbar() {
                 alt="Bringfood logo"
                 width={75}
                 height={16}
+                blurDataURL="data:..."
+                placeholder="blur"
               />
             )}
           </li>

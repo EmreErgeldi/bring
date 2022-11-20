@@ -9,6 +9,8 @@ export default function BringLogo() {
         width={180}
         height={180}
         className="m-4"
+        blurDataURL="data:..."
+        placeholder="blur"
       />
       <div className="h-3" />
       <h1 className="m-4 text-4xl text-white max-w-[300px] font-bold">
