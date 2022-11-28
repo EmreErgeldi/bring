@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function BringLogo() {
   return (
-    <div className="my-auto z-50">
+    <div className="gap-y-10 flex-col hidden sm:flex">
       <Image
         src="/images/bring-bimutluluk.svg"
         alt="Bring Bi Mutluluk"
@@ -12,10 +12,9 @@ export default function BringLogo() {
         blurDataURL="data:..."
         placeholder="blur"
       />
-      <div className="h-3" />
-      <h1 className="m-4 text-4xl text-white max-w-[300px] font-bold">
-        At your door in minutes
-      </h1>
+      <h3 className="text-4xl font-semibold tracking-tighter text-white">
+        At your door in <br /> minutes
+      </h3>
     </div>
   );
 }
