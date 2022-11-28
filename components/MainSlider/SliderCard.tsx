@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactFlagsSelect from "react-flags-select";
 import BringLogo from "./BringLogo";
+import Slider from "./Slider";
 
 export default function SliderCard() {
   const [selected, setSelected] = useState("TR");
@@ -15,8 +16,9 @@ export default function SliderCard() {
 
   return (
     <div className="h-auto sm:h-[500px] relative before:bg-gradient-to-r before:from-brand-secondary before:to-transparent before:absolute before:inset-0 before:w-full before:h-full before:z-10">
+      <Slider />
       <div className="relative sm:absolute inset-0 px-0 sm:px-8 z-[40] flex items-center">
-        <div className="max-w-[305px] sm:container flex mx-auto justify-between items-center">
+        <div className="sm:container lg:max-w-[1275px] flex mx-auto justify-between items-center">
           <div className="gap-y-10 flex-col hidden sm:flex">
             <BringLogo />
           </div>
@@ -31,8 +33,9 @@ export default function SliderCard() {
                   customLabels={flags}
                   selected={selected}
                   onSelect={(code) => setSelected(code)}
+                  className="!p-0"
                 />
-                <label className="relative flex-1 group">
+                <label className="relative flex-1 group cursor-text">
                   <input
                     required
                     className="h-full rounded px-4 pt-2 hover:border-brand-primary focus:border-brand-primary transition-colors outline-none text-sm w-full border-2 border-gray-200 peer"
