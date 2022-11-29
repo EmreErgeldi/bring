@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { prisma } from "../../db/prisma";
-import { GetStaticProps } from "next";
 import { Categories } from "@prisma/client";
 
 interface categoryProps {
