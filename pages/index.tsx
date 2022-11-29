@@ -26,7 +26,6 @@ export default function Home({
 // index.tsx
 export const getServerSideProps: GetServerSideProps = async () => {
   const feed = await prisma.categories.findMany();
-  console.log(feed);
   return {
     props: { feed },
   };
