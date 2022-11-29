@@ -1,14 +1,7 @@
 import Navbar from "../components/Navbar";
-import Container from "../components/MainSlider/Container";
 import SliderCard from "../components/MainSlider/SliderCard";
-// pages/index.tsx
 import { prisma } from "../db/prisma";
-import {
-  GetServerSideProps,
-  GetStaticProps,
-  InferGetServerSidePropsType,
-  InferGetStaticPropsType,
-} from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Category from "../components/Categories/Category";
 
 export default function Home({

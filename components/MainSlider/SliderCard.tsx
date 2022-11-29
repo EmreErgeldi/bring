@@ -15,7 +15,7 @@ export default function SliderCard() {
   };
 
   return (
-    <div className="h-auto sm:h-[500px] relative before:bg-gradient-to-r before:from-brand-secondary before:to-transparent before:absolute before:inset-0 before:w-full before:h-full before:z-10">
+    <div className="h-[500px] sm:h-[500px] relative before:bg-gradient-to-r before:from-brand-secondary before:to-transparent before:absolute before:inset-0 before:w-full before:h-full before:z-10">
       <Slider />
       <div className="relative sm:absolute inset-0 px-0 sm:px-8 z-[40] flex items-center">
         <div className="sm:container lg:max-w-[1275px] flex mx-auto justify-between items-center">

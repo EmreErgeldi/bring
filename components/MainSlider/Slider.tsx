@@ -8,7 +8,7 @@ function Item(props: {
   };
 }) {
   return (
-    <div className="h-[500px] bg-center bg-no-repeat bg-cover -translate-y-20">
+    <div className="bg-center bg-no-repeat -translate-y-20">
       <Image src={props.item.path} alt="slide show" width={1920} height={500} />
     </div>
   );
@@ -31,7 +31,12 @@ export default function Slider() {
   ];
 
   return (
-    <Carousel className="h-full hidden sm:block">
+    <Carousel
+      duration={500}
+      indicators={false}
+      animation="slide"
+      className="h-full hidden sm:block"
+    >
       {items.map((item, i) => (
         <Item key={i} item={item} />
       ))}
