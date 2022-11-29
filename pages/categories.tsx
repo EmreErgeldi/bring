@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Navbar from "../components/Navbar";
-import ThreeCard from "../components/ThreeCard/threeCard";
+import ThreeCard from "../components/ThreeCard/ThreeCard";
 
 export default function categories() {
   return (

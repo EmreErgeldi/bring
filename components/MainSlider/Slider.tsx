@@ -1,6 +1,5 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Paper, Button } from "@mui/material";
 import Image from "next/image";
 
 function Item(props: {
@@ -9,20 +8,14 @@ function Item(props: {
   };
 }) {
   return (
-    <div>
-      <Image
-        src={props.item.path}
-        alt="slide show"
-        width={1920}
-        height={200}
-        className="h-[500px] bg-center bg-no-repeat bg-cover scale-[1.15] translate-y-4"
-      />
+    <div className="h-[500px] bg-center bg-no-repeat bg-cover -translate-y-20">
+      <Image src={props.item.path} alt="slide show" width={1920} height={500} />
     </div>
   );
 }
 
 export default function Slider() {
-  var items = [
+  const items = [
     {
       path: "/images/bring-mainpage-1.jpg",
     },
