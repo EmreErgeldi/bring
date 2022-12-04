@@ -23,9 +23,7 @@ export default function SliderCard() {
             <BringLogo />
           </div>
           <div className="w-full sm:w-[400px] bg-gray-50 sm:rounded-lg px-5 py-3 pb-5 sm:py-6">
-            <h3 className="text-center mb-4 font-semibold text-brand-secondary">
-              Login or Register
-            </h3>
+            <h3 className="text-center mb-4 font-semibold text-brand-secondary">Login or Register</h3>
             <div className="flex flex-col gap-y-3">
               <div className="flex gap-x-3">
                 <ReactFlagsSelect
