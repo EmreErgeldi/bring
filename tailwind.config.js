@@ -12,6 +12,10 @@ module.exports = {
         "brand-gray": "#f3f0fe",
         "brand-yellow": "#ffd300",
       },
+      backgroundImage: (theme) => ({
+        "mobile-app":
+          "url(https://cdn.getir.com/getirweb-images/common/illustration/doodle.png)",
+      }),
       fontFamily: {
         brandMedium: "JihoSoftMedium",
         brandBold: "JihoSoftBold",

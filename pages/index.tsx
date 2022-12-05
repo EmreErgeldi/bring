@@ -5,17 +5,24 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Category from "../components/Categories/Category";
 import Promotion from "../components/Promotions/Promotion";
 import MobileApp from "../components/MobileApp/MobileApp";
+import Cards from "../components/Cards/Cards";
 
 export default function Home({
   feed,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen h-screen bg-gray-100">
       <Navbar />
       <SliderCard />
       <Category data={feed} />
-      <Promotion />
-      <MobileApp />
+      <div className=" bg-gray-100">
+        <Promotion />
+        <div className="container mx-auto grid gap-y-6 pt-8">
+          {/* <Favorites /> */}
+          <MobileApp />
+          <Cards />
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,16 +1,16 @@
 import Image from "next/image";
 export default function MobileApp() {
   return (
-    <div className="bg-primary-brand-color flex flex-col md:flex-row justify-between items-center bg-mobile-app md:rounded-lg text-white">
+    <div className="bg-brand-primary flex flex-col md:flex-row justify-between items-center bg-mobile-app md:rounded-lg text-white">
       <div className="flex flex-col gap-y-3 p-10 text-center md:text-left">
-        <h3 className="text-2xl font-bold tracking-tight">Getir'i indirin!</h3>
+        <h3 className="text-2xl font-bold tracking-tight">Download Getir!</h3>
         <p className="font-semibold">
-          İstediğiniz ürünleri dakikalar içinde kapınıza <br /> getirelim.
+          Let us deliver your order to your door in <br /> minutes.
         </p>
         <nav className="mt-5 flex flex-wrap lg:flex-nowrap justify-center gap-2">
           <a href="#" className="transition-all transform hover:scale-105">
             <Image
-              src="https://getir.com/_next/static/images/appstore-tr-141ed939fceebdcee96af608fa293b31.svg"
+              src="/images/app-store.svg"
               className="md:h-8 lg:h-auto"
               width={160}
               height={48}
@@ -19,7 +19,7 @@ export default function MobileApp() {
           </a>
           <a href="#" className="transition-all transform hover:scale-105">
             <Image
-              src="https://getir.com/_next/static/images/googleplay-tr-6b0c941b7d1a65d781fb4b644498be75.svg"
+              src="/images/google-play.svg"
               className="md:h-8 lg:h-auto"
               width={160}
               height={48}
@@ -30,7 +30,7 @@ export default function MobileApp() {
       </div>
       <div className="pt-6 hidden md:block md:self-end">
         <Image
-          src="https://cdn.getir.com/getirweb-images/common/landing/phoneLanding.png"
+          src="/images/phoneLanding.png"
           width={605}
           height={208}
           alt="phone landing"
