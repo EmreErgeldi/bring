@@ -7,9 +7,7 @@ import Promotion from "../components/Promotions/Promotion";
 import MobileApp from "../components/MobileApp/MobileApp";
 import Cards from "../components/Cards/Cards";
 
-export default function Home({
-  feed,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home({ feed }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className="w-screen h-screen bg-gray-100">
       <Navbar />
@@ -17,7 +15,7 @@ export default function Home({
       <Category data={feed} />
       <div className=" bg-gray-100">
         <Promotion />
-        <div className="container mx-auto grid gap-y-6 pt-8">
+        <div className="container mx-auto grid gap-y-6 pt-8 max-w-[1232px]">
           {/* <Favorites /> */}
           <MobileApp />
           <Cards />
