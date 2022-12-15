@@ -57,7 +57,7 @@ export default function Navbar() {
     bringwaterElement.current?.classList.remove("bg-brand-secondary");
   };
   return (
-    <div className="w-screen h-11 bg-brand-primary font-brandMedium px-8">
+    <div className="w-screen h-11 bg-brand-primary font-brandMedium px-8 z-20 sticky top-0">
       <div className="w-[100%] max-w-[1232px] mx-auto h-12 flex justify-between">
         <ul className="flex">
           <li
@@ -66,19 +66,9 @@ export default function Navbar() {
             ref={bringElement}
           >
             {bring ? (
-              <Image
-                src="/images/bring-hover.svg"
-                alt="Bring logo"
-                width={38}
-                height={16}
-              />
+              <Image src="/images/bring-hover.svg" alt="Bring logo" width={38} height={16} />
             ) : (
-              <Image
-                src="/images/bring.svg"
-                alt="Bring logo"
-                width={38}
-                height={16}
-              />
+              <Image src="/images/bring.svg" alt="Bring logo" width={38} height={16} />
             )}
           </li>
           <li
@@ -87,19 +77,9 @@ export default function Navbar() {
             ref={bringfoodElement}
           >
             {bringfood ? (
-              <Image
-                src="/images/bringfood-hover.svg"
-                alt="Bringfood logo"
-                width={70}
-                height={16}
-              />
+              <Image src="/images/bringfood-hover.svg" alt="Bringfood logo" width={70} height={16} />
             ) : (
-              <Image
-                src="/images/bringfood.svg"
-                alt="Bringfood logo"
-                width={70}
-                height={16}
-              />
+              <Image src="/images/bringfood.svg" alt="Bringfood logo" width={70} height={16} />
             )}
           </li>
           <li
@@ -108,19 +88,9 @@ export default function Navbar() {
             ref={bringmoreElement}
           >
             {bringmore ? (
-              <Image
-                src="/images/bringmore-hover.svg"
-                alt="Bring-it logo"
-                width={75}
-                height={16}
-              />
+              <Image src="/images/bringmore-hover.svg" alt="Bring-it logo" width={75} height={16} />
             ) : (
-              <Image
-                src="/images/bringmore.svg"
-                alt="Bringfood logo"
-                width={75}
-                height={16}
-              />
+              <Image src="/images/bringmore.svg" alt="Bringfood logo" width={75} height={16} />
             )}
           </li>
           <li
@@ -129,19 +99,9 @@ export default function Navbar() {
             ref={bringwaterElement}
           >
             {bringwater ? (
-              <Image
-                src="/images/bringwater-hover.svg"
-                alt="Bring-it logo"
-                width={75}
-                height={16}
-              />
+              <Image src="/images/bringwater-hover.svg" alt="Bring-it logo" width={75} height={16} />
             ) : (
-              <Image
-                src="/images/bringwater.svg"
-                alt="Bringfood logo"
-                width={75}
-                height={16}
-              />
+              <Image src="/images/bringwater.svg" alt="Bringfood logo" width={75} height={16} />
             )}
           </li>
         </ul>
