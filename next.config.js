@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["market-product-images-cdn.getirapi.com", "getir.com"],
+    domains: ["market-product-images-cdn.getirapi.com", "getir.com", "cdn.getir.com"],
   },
 };
 

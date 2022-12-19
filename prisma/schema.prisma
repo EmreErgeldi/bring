@@ -55,7 +55,7 @@ model products {
   product_id         Int                  @id @default(autoincrement())
   name               String
   description        String
-  price              Decimal              @db.Decimal(10, 2)
+  price              Float
   image_url          String
   extra_info         String?
   order_products     order_products[]

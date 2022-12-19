@@ -7,7 +7,7 @@ interface categoryProps {
 
 export default function CategoryNavbar({ data }: categoryProps) {
   return (
-    <div className=" mt-8 w-[240px] container">
+    <div className="items-start flex flex-col">
       <h3 className="font-medium text-[15px]">Categories</h3>
       <div className="bg-white p-2 mt-2">
         {data.map((category, i) => (

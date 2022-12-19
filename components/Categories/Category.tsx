@@ -14,7 +14,7 @@ export default function Category({ data }: categoryProps) {
           {data &&
             data.map((category, i) => (
               <a
-                href="#"
+                href="/categories"
                 key={i}
                 className="flex group justify-center items-center rounded transition-colors hover:bg-purple-50 flex-col p-4"
               >
