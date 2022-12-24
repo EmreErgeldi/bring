@@ -36,7 +36,7 @@ export default function Home({ feed, customers, admins }: InferGetServerSideProp
 
 // index.tsx
 export const getServerSideProps: GetServerSideProps = async () => {
-  const feed = await prisma.categories.findMany();
+  const feed = await prisma.categories.findMany({ orderBy: { category_id: "asc" } });
   const customers = await prisma.customers.findMany();
   const admins = await prisma.admins.findMany();
   return {

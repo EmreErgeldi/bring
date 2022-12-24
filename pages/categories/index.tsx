@@ -37,9 +37,12 @@ export default function categories({ feed, product }: InferGetServerSidePropsTyp
 
 // index.tsx
 export const getServerSideProps: GetServerSideProps = async () => {
-  const feed = await prisma.categories.findMany();
-  const products = await prisma.products.findMany();
-  const prodCat = await prisma.product_categories.findMany({ where: { category_id: 1 } });
+  const feed = await prisma.categories.findMany({ orderBy: { category_id: "asc" } });
+  const products = await prisma.products.findMany({ orderBy: { product_id: "asc" } });
+  const prodCat = await prisma.product_categories.findMany({
+    where: { category_id: 1 },
+    orderBy: { product_id: "asc" },
+  });
   const product: products[] = [];
   prodCat.forEach((item, i) => {
     products.forEach((item2, i2) => {
