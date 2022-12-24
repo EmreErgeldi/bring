@@ -6,11 +6,20 @@ import Category from "../components/Categories/Category";
 import Promotion from "../components/Promotions/Promotion";
 import MobileApp from "../components/MobileApp/MobileApp";
 import Cards from "../components/Cards/Cards";
+import { useState } from "react";
 
-export default function Home({ feed }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home({ feed, customers, admins }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const [user, setUser] = useState("");
+
+  const handleUser = (newUser: string) => {
+    // the callback. Use a better name
+    console.log(newUser);
+    //set category addibility, set product addibility
+  };
+
   return (
     <div className="w-screen h-screen bg-gray-100">
-      <Navbar />
+      <Navbar admins={admins} customers={customers} handleUser={handleUser} />
       <SliderCard />
       <Category data={feed} />
       <div className=" bg-gray-100">
@@ -28,7 +37,9 @@ export default function Home({ feed }: InferGetServerSidePropsType<typeof getSer
 // index.tsx
 export const getServerSideProps: GetServerSideProps = async () => {
   const feed = await prisma.categories.findMany();
+  const customers = await prisma.customers.findMany();
+  const admins = await prisma.admins.findMany();
   return {
-    props: { feed },
+    props: { feed, customers, admins },
   };
 };
