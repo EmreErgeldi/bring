@@ -12,11 +12,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     data: { total_price: totalPrice, order_date: Date.now(), customer_id: 1 },
   });
   const { order_id } = orderDB;
-  order.map((item) =>
-    prisma.order_products.create({
+  order.map(async (item) => {
+    const orderProd = await prisma.order_products.create({
       data: { order_id: Number(order_id), product_id: item.product_id },
-    })
-  );
+    });
+  });
 
   res.status(200).json({ message: "He kaydettim tm." });
 }
