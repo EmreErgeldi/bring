@@ -11,8 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const orderDB = await prisma.orders.create({
     data: { total_price: totalPrice, order_date: Date.now(), customer_id: 1 },
   });
-  const { order_id } = orderDB;
-  order.map(async (item) => {
+  const { order_id } = await orderDB;
+  order.forEach(async (item) => {
     const orderProd = await prisma.order_products.create({
       data: { order_id: Number(order_id), product_id: item.product_id },
     });
