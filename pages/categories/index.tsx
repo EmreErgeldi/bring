@@ -1,6 +1,6 @@
 import CategoryNavbar from "../../components/Categories/CategoryNavbar";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { prisma } from "../../db/prisma";
+import { prisma } from "../../lib/prisma";
 import Header from "../../components/ui/Header";
 import Navbar from "../../components/Navbar";
 import Promotion from "../../components/Promotions/Promotion";

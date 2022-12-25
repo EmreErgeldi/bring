@@ -27,7 +27,6 @@ model customers {
 model order_products {
   order_id   Int
   product_id Int
-  quantity   Int
   orders     orders   @relation(fields: [order_id], references: [order_id], onDelete: NoAction, onUpdate: NoAction)
   products   products @relation(fields: [product_id], references: [product_id], onDelete: NoAction, onUpdate: NoAction)
 
@@ -37,8 +36,8 @@ model order_products {
 model orders {
   order_id       Int              @id @default(autoincrement())
   customer_id    Int
-  order_date     DateTime         @db.Date
   total_price    Decimal          @db.Decimal(10, 2)
+  order_date     Decimal          @db.Decimal(999, 0)
   order_products order_products[]
   customers      customers        @relation(fields: [customer_id], references: [customer_id], onDelete: NoAction, onUpdate: NoAction)
 }

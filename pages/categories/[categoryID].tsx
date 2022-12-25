@@ -1,5 +1,5 @@
 import CategorySection from "../../components/Categories/CategorySection";
-import { prisma } from "../../db/prisma";
+import { prisma } from "../../lib/prisma";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { products } from "@prisma/client";
 

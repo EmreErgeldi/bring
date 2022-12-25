@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import SliderCard from "../components/MainSlider/SliderCard";
-import { prisma } from "../db/prisma";
+import { prisma } from "../lib/prisma";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Category from "../components/Categories/Category";
 import Promotion from "../components/Promotions/Promotion";

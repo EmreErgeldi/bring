@@ -104,7 +104,7 @@ export default function Navbar({
       <div className="w-[100%] max-w-[1232px] mx-auto h-12 flex justify-between">
         <ul className="flex">
           <li
-            className="py-3 px-5 mr-0.5 self-center bg-brand-secondary hover:bg-brand-secondary rounded-md rounded-b-none"
+            className="py-3 px-5 mr-0.5 self-center bg-brand-secondary hover:bg-brand-secondary rounded-md rounded-b-none cursor-pointer"
             onClick={handleBring}
             ref={bringElement}
           >

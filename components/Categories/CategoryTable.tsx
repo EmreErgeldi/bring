@@ -1,14 +1,17 @@
 import { products } from "@prisma/client";
+import { useAtom } from "jotai";
 import Image from "next/image";
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
+import { basketAtom } from "../../lib/atoms";
 
 interface productsProps {
   data: products[];
 }
 
 export default function CategoryTable({ data }: productsProps) {
+  const [basket, setBasket] = useAtom(basketAtom);
   const addBasket = (product: products) => {
-    console.log(product);
+    !basket.find((item) => item.product_id === product.product_id) && setBasket([...basket, product]);
   };
   return (
     <div className="flex flex-wrap max-w-[663px] items-center justify-between bg-gray-100">
