@@ -11,8 +11,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const orderDB = await prisma.orders.create({
     data: { total_price: totalPrice, order_date: Date.now(), customer_id: 1 },
   });
-  console.log(orderDB, "deneme");
+  console.log(orderDB, "orderDB");
   const { order_id } = await orderDB;
+  console.log(order_id, "order_id");
   order.forEach(async (item) => {
     console.log("deneme");
     const orderProd = await prisma.order_products.create({
