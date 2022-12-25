@@ -114,7 +114,7 @@ export default function Category({ data, isAdmin, handleProduct }: categoryProps
               <div className="grid grid-cols-4 ">
                 {data.map((item, i) => {
                   return (
-                    <div className="flex">
+                    <div className="flex" key={i}>
                       <input
                         type="checkbox"
                         name=""

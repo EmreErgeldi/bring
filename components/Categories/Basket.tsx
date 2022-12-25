@@ -50,7 +50,7 @@ export default function Basket() {
 
           {basket.length > 0 &&
             basket.map((product, i) => (
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center" key={i}>
                 <div key={i} className="flex items-center my-2 text-left">
                   <Image alt="" src={product.image_url} height="64" width={64} />
                   <span className="ml-2">{product.name}</span>
