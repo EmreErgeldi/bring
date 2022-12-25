@@ -12,6 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     data: { total_price: totalPrice, order_date: Date.now(), customer_id: 1 },
   });
   const { order_id } = orderDB;
+  console.log("deneme", order_id);
   order.map(async (item) => {
     console.log("deneme");
     return await prisma.order_products.create({
