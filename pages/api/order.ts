@@ -14,12 +14,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   console.log(orderDB, "orderDB");
   const { order_id } = await orderDB;
   console.log(order_id, "order_id");
-  order.forEach(async (item) => {
-    console.log("deneme");
-    const orderProd = await prisma.order_products.create({
-      data: { order_id: Number(order_id), product_id: item.product_id },
+  for (let i = 0; i < order.length; i++) {
+    await prisma.order_products.create({
+      data: { order_id: Number(order_id), product_id: order[i].product_id },
     });
-  });
+  }
 
   res.status(200).json({ message: "He kaydettim tm." });
 }
