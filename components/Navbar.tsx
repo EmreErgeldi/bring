@@ -8,6 +8,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import { InferGetServerSidePropsType } from "next";
 import { getServerSideProps } from "../pages";
 import { admins, customers } from "@prisma/client";
+import { useRouter } from "next/router";
 
 export default function Navbar({
   admins,
@@ -21,6 +22,8 @@ export default function Navbar({
   const [bringwater, setBringWater] = useState(false);
   const [value, setValue] = useState("");
   const [selected, setSelected] = useState("TR");
+
+  const router = useRouter();
 
   const flags = {
     US: "+1",
@@ -42,12 +45,12 @@ export default function Navbar({
 
   const handleClose = (value: string) => {
     setOpen(false);
-    admins.forEach((element: admins) => {
+    admins?.forEach((element: admins) => {
       if (element.phone_number == value) {
         handleUser("admin");
       }
     });
-    customers.forEach((element: customers) => {
+    customers?.forEach((element: customers) => {
       if (element.phone_number == value) {
         handleUser("customer");
       }
@@ -94,6 +97,7 @@ export default function Navbar({
     bringElement.current?.classList.add("bg-brand-secondary");
     bringmoreElement.current?.classList.remove("bg-brand-secondary");
     bringwaterElement.current?.classList.remove("bg-brand-secondary");
+    router.push("/");
   };
   return (
     <div className="w-screen h-11 bg-brand-primary font-brandMedium px-8 z-20 sticky top-0">
@@ -150,14 +154,20 @@ export default function Navbar({
             <LanguageIcon className="m-1" />
             <span>English(EN)</span>
           </li>
-          <li className="py-3 px-5 self-center hover:cursor-pointer" onClick={handleClickOpen}>
-            <PersonIcon className="m-1" />
-            <span>Login</span>
-          </li>
-          <li className="py-3 px-5 self-center hover:cursor-pointer">
-            <PersonAddAlt1Icon className="m-1" />
-            <span className="">Sign Up</span>
-          </li>
+          {router.pathname === "/" ? (
+            <>
+              <li className="py-3 px-5 self-center hover:cursor-pointer" onClick={handleClickOpen}>
+                <PersonIcon className="m-1" />
+                <span>Login</span>
+              </li>
+              <li className="py-3 px-5 self-center hover:cursor-pointer">
+                <PersonAddAlt1Icon className="m-1" />
+                <span className="">Sign Up</span>
+              </li>
+            </>
+          ) : (
+            ""
+          )}
         </ul>
       </div>
       <Dialog open={open} onClose={handleClose}>
