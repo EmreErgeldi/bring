@@ -38,15 +38,15 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const customers = await prisma.customers.findMany();
   const categories = await prisma.categories.findMany();
   const admins = await prisma.admins.findMany();
-  let array: object[] = [];
-  categories.forEach(async (item, i) => {
-    const avg = (await prisma.$queryRaw`SELECT AVG(products.price)
-  FROM products
-  INNER JOIN product_categories ON products.product_id = product_categories.product_id
-  WHERE product_categories.category_id = ${item.category_id}`) as object;
-    array.push(avg);
-    console.log(array);
-  });
+  // let array: object[] = [];
+  // categories.forEach(async (item, i) => {
+  //   const avg = (await prisma.$queryRaw`SELECT AVG(products.price)
+  // FROM products
+  // INNER JOIN product_categories ON products.product_id = product_categories.product_id
+  // WHERE product_categories.category_id = ${item.category_id}`) as object;
+  //   array.push(avg);
+  //   console.log(array);
+  // });
   return {
     props: { feed, customers, admins },
   };
