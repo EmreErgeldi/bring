@@ -3,8 +3,16 @@ import { prisma } from "../../lib/prisma";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { products } from "@prisma/client";
 
-export default function beverages({ feed, product }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  return <CategorySection feed={feed} product={product} />;
+export default function beverages({
+  feed,
+  product,
+  admins,
+  customers,
+  categories,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  return (
+    <CategorySection feed={feed} product={product} admins={admins} customers={customers} categories={categories} />
+  );
 }
 
 // index.tsx
@@ -25,7 +33,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
     });
   });
+  const customers = await prisma.customers.findMany();
+  const admins = await prisma.admins.findMany();
+  const categories = await prisma.categories.findMany();
+
   return {
-    props: { feed, product },
+    props: { feed, product, admins, customers, categories },
   };
 };

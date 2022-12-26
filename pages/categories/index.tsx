@@ -8,7 +8,11 @@ import CategoryTable from "../../components/Categories/CategoryTable";
 import Basket from "../../components/Categories/Basket";
 import { products } from "@prisma/client";
 
-export default function categories({ feed, product }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function categories({
+  feed,
+  product,
+  categories,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className="main-layout bg-gray-50">
       <div className="lg:sticky lg:top-0 lg:z-20">
@@ -24,7 +28,7 @@ export default function categories({ feed, product }: InferGetServerSidePropsTyp
             <CategoryNavbar data={feed} />
           </div>
           <div className="md:sticky md:top-2 md:self-start flex flex-col items-start">
-            <CategoryTable data={product} />
+            <CategoryTable data={product} categories={categories} />
           </div>
           <div className="max-w-[300px] sticky overflow-y-auto lg:top-32">
             <Basket />
@@ -39,6 +43,7 @@ export default function categories({ feed, product }: InferGetServerSidePropsTyp
 export const getServerSideProps: GetServerSideProps = async () => {
   const feed = await prisma.categories.findMany({ orderBy: { category_id: "asc" } });
   const products = await prisma.products.findMany({ orderBy: { product_id: "asc" } });
+  const categories = await prisma.categories.findMany();
   const prodCat = await prisma.product_categories.findMany({
     where: { category_id: 1 },
     orderBy: { product_id: "asc" },
@@ -52,6 +57,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     });
   });
   return {
-    props: { feed, product },
+    props: { feed, product, categories },
   };
 };

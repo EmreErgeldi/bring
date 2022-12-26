@@ -6,12 +6,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const chromeData = JSON.parse(req.body);
   const { checked, ...data } = chromeData;
 
-  const postData = await prisma.products.create({ data });
+  if (req.method === "POST") {
+    const postData = await prisma.products.create({ data });
 
-  const { product_id } = await postData;
+    const { product_id } = await postData;
 
-  chromeData.checked.forEach(async (element: any) => {
-    await prisma.product_categories.create({ data: { product_id, category_id: element } });
-  });
+    for (let i = 0; i < chromeData.checked.length; i++) {
+      await prisma.product_categories.create({ data: { product_id, category_id: chromeData.checked[i] } });
+    }
+  }
+
+  if (req.method === "PUT") {
+    console.log(data);
+    await prisma.products.update({ where: { product_id: data.product_id }, data });
+  }
   res.status(200).end(`Product ${data.name} created!`);
 }

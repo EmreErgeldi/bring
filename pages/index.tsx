@@ -6,25 +6,8 @@ import Category from "../components/Categories/Category";
 import Promotion from "../components/Promotions/Promotion";
 import MobileApp from "../components/MobileApp/MobileApp";
 import Cards from "../components/Cards/Cards";
-import { useEffect, useState } from "react";
 
 export default function Home({ feed, customers, admins }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [user, setUser] = useState("");
-  const [isAdmin, setIsAdmin] = useState("none");
-
-  useEffect(() => {
-    if (user == "admin") {
-      setIsAdmin("block");
-    } else {
-      setIsAdmin("none");
-    }
-  }, [user]);
-
-  const handleUser = (newUser: string) => {
-    console.log(newUser);
-    setUser(newUser);
-  };
-
   const handleProduct = (product: object) => {
     console.log(product);
     fetch("http://localhost:3000/api/products", {
@@ -32,12 +15,11 @@ export default function Home({ feed, customers, admins }: InferGetServerSideProp
       body: JSON.stringify(product),
     });
   };
-
   return (
     <div className="w-screen h-screen bg-gray-100">
-      <Navbar admins={admins} customers={customers} handleUser={handleUser} />
+      <Navbar admins={admins} customers={customers} />
       <SliderCard />
-      <Category data={feed} isAdmin={isAdmin} handleProduct={handleProduct} />
+      <Category data={feed} handleProduct={handleProduct} />
       <div className=" bg-gray-100">
         <Promotion />
         <div className="container mx-auto grid gap-y-6 pt-8 max-w-[1232px]">
@@ -54,7 +36,17 @@ export default function Home({ feed, customers, admins }: InferGetServerSideProp
 export const getServerSideProps: GetServerSideProps = async () => {
   const feed = await prisma.categories.findMany({ orderBy: { category_id: "asc" } });
   const customers = await prisma.customers.findMany();
+  const categories = await prisma.categories.findMany();
   const admins = await prisma.admins.findMany();
+  let array: object[] = [];
+  categories.forEach(async (item, i) => {
+    const avg = (await prisma.$queryRaw`SELECT AVG(products.price)
+  FROM products
+  INNER JOIN product_categories ON products.product_id = product_categories.product_id
+  WHERE product_categories.category_id = ${item.category_id}`) as object;
+    array.push(avg);
+    console.log(array);
+  });
   return {
     props: { feed, customers, admins },
   };

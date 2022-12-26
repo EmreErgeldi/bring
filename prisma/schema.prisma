@@ -67,3 +67,13 @@ model admins {
   first_name   String
   phone_number String
 }
+
+model products_audits {
+  product_id  Int?
+  name        String?
+  description String?
+  price       Float?
+  image_url   String?
+  changed_on  DateTime? @db.Timestamptz(6)
+  id          Int       @id @default(autoincrement())
+}

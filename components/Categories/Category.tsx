@@ -1,35 +1,25 @@
 import Image from "next/image";
-import { categories } from "@prisma/client";
+import { categories, Prisma } from "@prisma/client";
 import { Box, Dialog } from "@mui/material";
 import { useEffect, useState } from "react";
+import { isAdminAtom } from "../../lib/atoms";
+import { useAtom } from "jotai";
+import { prisma } from "../../lib/prisma";
 
 interface categoryProps {
   data: categories[];
-  isAdmin: string;
   handleProduct: (product: object) => void;
 }
 
-export default function Category({ data, isAdmin, handleProduct }: categoryProps) {
-  const flags = {
-    US: "+1",
-    GB: "+5",
-    FR: "+70",
-    DE: "+30",
-    IT: "+11",
-    TR: "+90",
-  };
-
-  const [admin, setAdmin] = useState("none");
+export default function Category({ data, handleProduct }: categoryProps) {
+  const [admin, setAdmin] = useState(false);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [imageUrl, setImageUrl] = useState("");
   const [checked, setChecked] = useState<any[]>([]);
-
-  useEffect(() => {
-    setAdmin(isAdmin);
-  }, [isAdmin]);
+  const [isAdmin, setIsAdmin] = useAtom(isAdminAtom);
 
   const handleClose = () => {
     setOpen(false);
@@ -85,7 +75,7 @@ export default function Category({ data, isAdmin, handleProduct }: categoryProps
                 </span>
               </a>
             ))}
-          <Box sx={{ display: admin }}>
+          <Box sx={{ display: isAdmin ? "block" : "none" }}>
             <a
               className="flex group justify-center items-center rounded transition-colors hover:bg-purple-50 flex-col p-4 "
               onClick={() => {
@@ -108,7 +98,7 @@ export default function Category({ data, isAdmin, handleProduct }: categoryProps
       </div>
       <Dialog open={open} onClose={handleClose} maxWidth="xl">
         <div className="w-full bg-gray-50 sm:rounded-lg px-5 py-3 pb-5 sm:py-6">
-          <h3 className="text-center mb-4 font-semibold text-brand-secondary">Login or Register</h3>
+          <h3 className="text-center mb-4 font-semibold text-brand-secondary">Add New Product</h3>
           <div className="flex flex-col gap-y-3">
             <div className="gap-x-3">
               <div className="grid grid-cols-4 ">

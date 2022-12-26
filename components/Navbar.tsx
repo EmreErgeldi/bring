@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactFlagsSelect from "react-flags-select";
 import { Dialog } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
@@ -9,12 +9,10 @@ import { InferGetServerSidePropsType } from "next";
 import { getServerSideProps } from "../pages";
 import { admins, customers } from "@prisma/client";
 import { useRouter } from "next/router";
+import { isAdminAtom, isEditAtom } from "../lib/atoms";
+import { useAtom } from "jotai";
 
-export default function Navbar({
-  admins,
-  customers,
-  handleUser,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Navbar({ admins, customers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [bring, setBring] = useState(true);
   const [open, setOpen] = useState(false);
   const [bringfood, setBringFood] = useState(false);
@@ -22,6 +20,7 @@ export default function Navbar({
   const [bringwater, setBringWater] = useState(false);
   const [value, setValue] = useState("");
   const [selected, setSelected] = useState("TR");
+  const [isAdmin, setIsAdmin] = useAtom(isAdminAtom);
 
   const router = useRouter();
 
@@ -47,12 +46,12 @@ export default function Navbar({
     setOpen(false);
     admins?.forEach((element: admins) => {
       if (element.phone_number == value) {
-        handleUser("admin");
+        setIsAdmin(true);
       }
     });
     customers?.forEach((element: customers) => {
       if (element.phone_number == value) {
-        handleUser("customer");
+        setIsAdmin(false);
       }
     });
     console.log(value, admins, customers);
@@ -154,20 +153,14 @@ export default function Navbar({
             <LanguageIcon className="m-1" />
             <span>English(EN)</span>
           </li>
-          {router.pathname === "/" ? (
-            <>
-              <li className="py-3 px-5 self-center hover:cursor-pointer" onClick={handleClickOpen}>
-                <PersonIcon className="m-1" />
-                <span>Login</span>
-              </li>
-              <li className="py-3 px-5 self-center hover:cursor-pointer">
-                <PersonAddAlt1Icon className="m-1" />
-                <span className="">Sign Up</span>
-              </li>
-            </>
-          ) : (
-            ""
-          )}
+          <li className="py-3 px-5 self-center hover:cursor-pointer" onClick={handleClickOpen}>
+            <PersonIcon className="m-1" />
+            <span>Login</span>
+          </li>
+          <li className="py-3 px-5 self-center hover:cursor-pointer">
+            <PersonAddAlt1Icon className="m-1" />
+            <span className="">Sign Up</span>
+          </li>
         </ul>
       </div>
       <Dialog open={open} onClose={handleClose}>
