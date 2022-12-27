@@ -46,7 +46,7 @@ model product_categories {
   product_id  Int
   category_id Int
   categories  categories @relation(fields: [category_id], references: [category_id], onDelete: NoAction, onUpdate: NoAction)
-  products    products   @relation(fields: [product_id], references: [product_id], onDelete: NoAction, onUpdate: NoAction)
+  products    products   @relation(fields: [product_id], references: [product_id], onDelete: Cascade, onUpdate: NoAction)
 
   @@id([product_id, category_id])
 }
