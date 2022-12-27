@@ -7,7 +7,11 @@ import Promotion from "../components/Promotions/Promotion";
 import MobileApp from "../components/MobileApp/MobileApp";
 import Cards from "../components/Cards/Cards";
 
-export default function Home({ feed, customers, admins }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home({
+  feed,
+  customers,
+  admins,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const handleProduct = (product: object) => {
     console.log(product);
     fetch("http://localhost:3000/api/products", {
@@ -34,7 +38,9 @@ export default function Home({ feed, customers, admins }: InferGetServerSideProp
 
 // index.tsx
 export const getServerSideProps: GetServerSideProps = async () => {
-  const feed = await prisma.categories.findMany({ orderBy: { category_id: "asc" } });
+  const feed = await prisma.categories.findMany({
+    orderBy: { category_id: "asc" },
+  });
   const customers = await prisma.customers.findMany();
   const categories = await prisma.categories.findMany();
   const admins = await prisma.admins.findMany();
@@ -47,6 +53,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
   //   array.push(avg);
   //   console.log(array);
   // });
+  const procedure =
+    await prisma.$queryRaw`CALL add_customer('mahmut', 'mahmut', 'mahmut@mahmut.com', 'mahmut mah.', '1234')`;
   return {
     props: { feed, customers, admins },
   };
