@@ -3,7 +3,12 @@ import { categories, products } from "@prisma/client";
 import { useAtom } from "jotai";
 import Image from "next/image";
 import { MouseEvent, useEffect, useState } from "react";
-import { basketAtom, isAdminAtom, isEditAtom } from "../../lib/atoms";
+import {
+  basketAtom,
+  isAdminAtom,
+  isDeleteAtom,
+  isEditAtom,
+} from "../../lib/atoms";
 
 interface productsProps {
   data: products[];
@@ -16,6 +21,7 @@ export default function CategoryTable({ data, categories }: productsProps) {
   const [open, setOpen] = useState(false);
   const [product, setProduct] = useState({} as products);
   const [isEdit, setIsEdit] = useAtom(isEditAtom);
+  const [isDelete, setIsDelete] = useAtom(isDeleteAtom);
   const [checked, setChecked] = useState<any[]>([]);
   const [value, setValue] = useState("");
   const [description, setDescription] = useState("");
@@ -28,6 +34,11 @@ export default function CategoryTable({ data, categories }: productsProps) {
   };
   const handleEdit = (product: products) => {
     setIsEdit(true);
+    setProduct(product);
+    console.log(product);
+  };
+  const handleDelete = (product: products) => {
+    setIsDelete(true);
     setProduct(product);
     console.log(product);
   };
@@ -65,6 +76,17 @@ export default function CategoryTable({ data, categories }: productsProps) {
       }),
     });
   };
+  const handleYes = () => {
+    fetch("/api/products", {
+      method: "DELETE",
+      body: JSON.stringify({
+        product_id: product.product_id,
+      }),
+    });
+  };
+  const handleNo = () => {
+    setIsDelete(false);
+  };
 
   useEffect(() => {
     if (isEdit) {
@@ -75,14 +97,21 @@ export default function CategoryTable({ data, categories }: productsProps) {
   }, [isEdit]);
 
   const addBasket = (product: products) => {
-    !basket.find((item) => item.product_id === product.product_id) && setBasket([...basket, product]);
+    !basket.find((item) => item.product_id === product.product_id) &&
+      setBasket([...basket, product]);
   };
 
   return (
     <div className="flex flex-wrap max-w-[663px] items-center justify-between bg-gray-100">
       {data.map((product, i) => (
         <div className="w-[165px] relative h-[230px] bg-white" key={i}>
-          <Image src={product.image_url} alt="product image" width={120} height={120} className="  mx-auto relative" />
+          <Image
+            src={product.image_url}
+            alt="product image"
+            width={120}
+            height={120}
+            className="  mx-auto relative"
+          />
           <div
             className="absolute top-2 left-2  rounded-lg border-[1px] cursor-pointer"
             onClick={(e) => {
@@ -90,7 +119,28 @@ export default function CategoryTable({ data, categories }: productsProps) {
             }}
             style={{ display: isAdmin ? "block" : "none" }}
           >
-            <Image src="/images/edit-icon.svg" width={32} height={32} alt="add icon" className="shadow-lg" />
+            <Image
+              src="/images/edit-icon.svg"
+              width={32}
+              height={32}
+              alt="add icon"
+              className="shadow-lg"
+            />
+          </div>
+          <div
+            className="absolute top-2 left-12  rounded-lg border-[1px] cursor-pointer"
+            onClick={(e) => {
+              handleDelete(product);
+            }}
+            style={{ display: isAdmin ? "block" : "none" }}
+          >
+            <Image
+              src="/images/delete-icon.svg"
+              width={32}
+              height={32}
+              alt="add icon"
+              className="shadow-lg"
+            />
           </div>
           <div
             className="absolute top-2 right-2  rounded-lg border-[1px] cursor-pointer"
@@ -98,17 +148,31 @@ export default function CategoryTable({ data, categories }: productsProps) {
               addBasket(product);
             }}
           >
-            <Image src="/images/add-icon.svg" width={32} height={32} alt="add icon" className="shadow-lg" />
+            <Image
+              src="/images/add-icon.svg"
+              width={32}
+              height={32}
+              alt="add icon"
+              className="shadow-lg"
+            />
           </div>
 
-          <h1 className="font-medium text-[15px] mx-auto w-fit text-brand-primary">₺{product.price}</h1>
-          <h1 className="font-medium text-[15px] text-center mx-auto w-fit max-w-[149px]">{product.name}</h1>
-          <h1 className=" text-[15px] text-center text-slate-400">{product.description}</h1>
+          <h1 className="font-medium text-[15px] mx-auto w-fit text-brand-primary">
+            ₺{product.price}
+          </h1>
+          <h1 className="font-medium text-[15px] text-center mx-auto w-fit max-w-[149px]">
+            {product.name}
+          </h1>
+          <h1 className=" text-[15px] text-center text-slate-400">
+            {product.description}
+          </h1>
         </div>
       ))}
       <Dialog open={open} onClose={handleClose} maxWidth="xl">
         <div className="w-full bg-gray-50 sm:rounded-lg px-5 py-3 pb-5 sm:py-6">
-          <h3 className="text-center mb-4 font-semibold text-brand-secondary">Update Product</h3>
+          <h3 className="text-center mb-4 font-semibold text-brand-secondary">
+            Update Product
+          </h3>
           <div className="flex flex-col gap-y-3">
             <div className="gap-x-3">
               <div className="grid grid-cols-4 ">
@@ -182,6 +246,34 @@ export default function CategoryTable({ data, categories }: productsProps) {
               onClick={handleSubmit}
             >
               Update Product
+            </button>
+          </div>
+        </div>
+      </Dialog>
+      <Dialog
+        open={isDelete}
+        onClose={() => {
+          setIsDelete(false);
+        }}
+        maxWidth="xl"
+      >
+        <div className="w-full bg-gray-50 sm:rounded-lg px-5 py-3 pb-5 sm:py-6">
+          <h3 className="text-center mb-4 font-semibold text-brand-secondary">
+            Are you sure to delete product?
+          </h3>
+          <div className="flex flex-col gap-y-3">
+            <div className="gap-x-3"></div>
+            <button
+              className="h-12 rounded-lg transition-colors bg-brand-yellow text-brand-primary text-sm font-semibold hover:bg-brand-primary hover:text-brand-yellow"
+              onClick={handleNo}
+            >
+              No
+            </button>
+            <button
+              className="h-12 rounded-lg transition-colors bg-brand-yellow text-brand-primary text-sm font-semibold hover:bg-brand-primary hover:text-brand-yellow"
+              onClick={handleYes}
+            >
+              Yes
             </button>
           </div>
         </div>

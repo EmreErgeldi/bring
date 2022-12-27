@@ -20,5 +20,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log(data);
     await prisma.products.update({ where: { product_id: data.product_id }, data });
   }
+  
+  if (req.method === "DELETE") {
+    console.log(data);
+    await prisma.products.delete({ where: { product_id: data.product_id } });
+  }
   res.status(200).end(`Product ${data.name} created!`);
 }
